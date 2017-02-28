@@ -1,0 +1,67 @@
+$static-image-path: '/bower_components/salesforce-lightning-design-system/assets/images';
+$static-font-path: '/bower_components/salesforce-lightning-design-system/assets/fonts/webfonts';
+
+@import '../bower_components/salesforce-lightning-design-system/scss/index.scss';
+
+html {
+  background-color: #E0E5EE
+}
+
+.app {
+  padding: 1rem;
+  .header {
+    font-size: 24px;
+  }
+  .slds-media {
+    margin-bottom: 2rem;
+    overflow: auto;
+  }
+  .content {
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .ss-card {
+    border: $border-width-thin solid #D8DDE6;
+    background-color: #fff;
+    border-radius: $border-radius-small;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    width: 100%;
+    position: relative;
+    .ss-card__section {
+      border-bottom: $border-width-thin solid #D8DDE6;
+      padding: $spacing-medium;
+      overflow: hidden;
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+    .icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      svg {
+        fill: #54698D;
+      }
+    }
+    .header {
+      font-size: 18px;
+      color: #54698D;
+      font-weight: 100;
+    }
+    .subheader {
+      font-size: 12px;
+      color: #54698D;
+    }
+    &.ss-card--time {
+      .ss-card__section.time-section:hover {
+        cursor: pointer;
+        background-color: #F7F9FB;
+      }
+    }
+  }
+  .chart {
+    margin-top: 1rem;
+  }
+}
