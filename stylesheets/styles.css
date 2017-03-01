@@ -13427,7 +13427,7 @@ html {
   padding: 1rem;
 }
 .app .header {
-  font-size: 24px;
+  font-size: 20px;
 }
 .app .slds-media {
   margin-bottom: 2rem;
@@ -13471,6 +13471,9 @@ html {
 .app .ss-card .subheader {
   font-size: 12px;
   color: #54698D;
+}
+.app .ss-card.ss-card--time .day {
+  text-transform: capitalize;
 }
 .app .ss-card.ss-card--time .ss-card__section.time-section:hover {
   cursor: pointer;

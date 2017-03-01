@@ -10,7 +10,7 @@ html {
 .app {
   padding: 1rem;
   .header {
-    font-size: 24px;
+    font-size: 20px;
   }
   .slds-media {
     margin-bottom: 2rem;
@@ -55,6 +55,9 @@ html {
       color: #54698D;
     }
     &.ss-card--time {
+      .day {
+        text-transform: capitalize;
+      }
       .ss-card__section.time-section:hover {
         cursor: pointer;
         background-color: #F7F9FB;

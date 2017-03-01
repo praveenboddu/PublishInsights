@@ -10,7 +10,30 @@ app.controller('ByDayGraphCtrl', function ($scope, Data) {
   $scope.labels = [];
   $scope.data = [];
   Object.keys(Data.get()).forEach(function(key) {
-    $scope.labels.push(key);
+    var day;
+    switch (key) {
+      case 'monday':
+        day = "Mon";
+        break;
+      case 'tuesday':
+        day = "Wed";
+        break;
+      case 'wednesday':
+        day = "Wed";
+        break;
+      case 'thursday':
+        day = "Thu";
+        break;
+      case 'friday':
+        day = "Fri";
+        break;
+      case 'saturday':
+        day = "Sat";
+        break;
+      case  'sunday':
+        day = "Sun";
+    }
+    $scope.labels.push(day);
     $scope.data.push(Data.get()[key].byDay);
   });
 });

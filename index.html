@@ -1,75 +1,74 @@
 <!doctype html>
 <html ng-app="app" lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Best Times to Publish</title>
-    <meta name="description" content="A boilerplate for SLDS prototypes.">
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="bower_components/chart.js/dist/Chart.min.js"></script>
-    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <div class="app">
-      <div class="content">
-        <div class="slds-media">
-          <div class="slds-media__figure">
-            <span class="slds-icon_container slds-icon-standard-campaign"><svg class="slds-icon slds-icon--large" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="bower_components/salesforce-lightning-design-system/assets/icons/standard-sprite/svg/symbols.svg#custom_notification"></use></svg></span>
-          </div>
-          <div class="slds-media__body">
-            <div class="header">Your Best Times to Publish</div>
-            <div class="subheader">Publish your content during these times to get the highest engagement.</div>
-          </div>
-        </div>
-        <div class="ss-card ss-card--day">
-          <div class="icon">
-            <svg class="slds-icon slds-icon--small" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="bower_components/salesforce-lightning-design-system/assets/icons/utility-sprite/svg/symbols.svg#event"></use></svg>
-          </div>
-          <div class="ss-card__section">
-            <div class="header">Fans Online</div>
-            <div class="subheader">By day of the week</div>
-            <div ng-controller="ByDayGraphCtrl">
-              <canvas
-                class="chart chart-bar"
-                chart-data="data" 
-                chart-labels="labels">
-              </canvas>
-            </div>
-          </div>
-        </div>
-
-        <div ng-controller="TimeOfDayCardCtrl" class="ss-card ss-card--time">
-          <div class="icon">
-            <svg class="slds-icon slds-icon--small" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="bower_components/salesforce-lightning-design-system/assets/icons/utility-sprite/svg/symbols.svg#clock"></use></svg>
-          </div>
-          <div class="ss-card__section">
-            <div class="header">Fans Online</div>
-            <div class="subheader">By time of day</div>
-          </div>
-          <div ng-repeat="(key, value) in data" ng-click="expanded = !expanded" class="ss-card__section time-section">
-            <div class="slds-grid">
-              <div class="slds-col slds-text-align--left">
-                {{key}}
-              </div>
-              <div class="slds-col slds-text-align--right">
-                Best time: {{value.bestTime}}
-              </div>
-            </div>
-            <div ng-if="expanded === true">
-              <div ng-controller="ByHourGraphCtrl">
-                <canvas
-                  class="chart chart-line"
-                  chart-data="data" 
+<head>
+  <meta charset="utf-8">
+  <title>Fans Online</title>
+  <meta name="description" content="A boilerplate for SLDS prototypes.">
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/chart.js/dist/Chart.min.js"></script>
+  <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+<div class="app">
+  <div class="content">
+    <!--<div class="slds-media">
+      <div class="slds-media__figure">
+        <span class="slds-icon_container slds-icon-standard-campaign"><svg class="slds-icon slds-icon--medium" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="bower_components/salesforce-lightning-design-system/assets/icons/standard-sprite/svg/symbols.svg#custom_notification"></use></svg></span>
+      </div>
+      <div class="slds-media__body">
+        <div class="header">Fans Online</div>
+      </div>
+    </div>-->
+    <div class="ss-card ss-card--day">
+      <div class="icon">
+        <svg class="slds-icon slds-icon--small" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="bower_components/salesforce-lightning-design-system/assets/icons/utility-sprite/svg/symbols.svg#event"></use></svg>
+      </div>
+      <div class="ss-card__section">
+        <div class="header">Fans Online</div>
+        <div class="subheader">By day of the week</div>
+        <div ng-controller="ByDayGraphCtrl">
+          <canvas
+                  class="chart chart-bar"
+                  chart-data="data"
                   chart-labels="labels">
-                </canvas>
-              </div>
-            </div>
-          </div>
+          </canvas>
         </div>
-
       </div>
     </div>
-  </body>
+
+    <div ng-controller="TimeOfDayCardCtrl" class="ss-card ss-card--time">
+      <div class="icon">
+        <svg class="slds-icon slds-icon--small" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="bower_components/salesforce-lightning-design-system/assets/icons/utility-sprite/svg/symbols.svg#clock"></use></svg>
+      </div>
+      <div class="ss-card__section">
+        <div class="header">Fans Online</div>
+        <div class="subheader">By time of day</div>
+      </div>
+      <div ng-repeat="(key, value) in data" ng-click="expanded = !expanded" class="ss-card__section time-section">
+        <div class="slds-grid">
+          <div class="day slds-col slds-text-align--left">
+            {{key}}
+          </div>
+          <div class="slds-col slds-text-align--right">
+            Best time: {{value.bestTime}}
+          </div>
+        </div>
+        <div ng-if="expanded === true">
+          <div ng-controller="ByHourGraphCtrl">
+            <canvas
+                    class="chart chart-line"
+                    chart-data="data"
+                    chart-labels="labels">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
 </html>
