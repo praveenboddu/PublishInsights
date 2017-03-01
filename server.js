@@ -21,6 +21,10 @@ app.get('/', function(req, res) {
 
 });
 
+app.post('/', function (req, res) {
+    res.sendFile('/index.html', { root: __dirname })
+})
+
 app.listen(port, function() {
     console.log('Our app is running on http://localhost:' + port);
 });
