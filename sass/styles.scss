@@ -55,16 +55,32 @@ html {
       color: #54698D;
     }
     &.ss-card--time {
+      .chart-wrapper.ng-enter {
+        animation: .5s show;
+      }
+      .star {
+        fill: #ECA421;
+        vertical-align: text-top;
+      }
       .day {
         text-transform: capitalize;
-      }
-      .ss-card__section.time-section:hover {
+        font-weight: bold;
         cursor: pointer;
-        background-color: #F7F9FB;
       }
     }
   }
   .chart {
     margin-top: 1rem;
+  }
+}
+
+@keyframes show {
+  0% {
+    max-height: 0;
+    opacity: 0;
+  }
+  100% {
+    max-height: 999px;
+    opacity: 1;
   }
 }

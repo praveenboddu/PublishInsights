@@ -32,7 +32,9 @@
         <div ng-controller="ByDayGraphCtrl">
           <canvas
                   class="chart chart-bar"
-                  chart-data="data"
+                  chart-colors="colors"
+                  chart-options="options"
+                  chart-data="[data]"
                   chart-labels="labels">
           </canvas>
         </div>
@@ -47,23 +49,32 @@
         <div class="header">Fans Online</div>
         <div class="subheader">By time of day</div>
       </div>
-      <div ng-repeat="(key, value) in data" ng-click="expanded = !expanded" class="ss-card__section time-section">
+      <div ng-repeat="(key, value) in data" class="ss-card__section time-section">
         <div class="slds-grid">
-          <div class="day slds-col slds-text-align--left">
-            {{key}}
+          <div class="slds-col slds-text-align--left">
+            <div class="day" ng-click="expanded = !expanded">
+              <button class="slds-button slds-button--icon slds-m-right--small">
+                <svg class="slds-button__icon" aria-hidden="true">
+                  <use ng-show="expanded" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="bower_components/salesforce-lightning-design-system/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                  <use ng-show="!expanded" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="bower_components/salesforce-lightning-design-system/assets/icons/utility-sprite/svg/symbols.svg#chevronright"></use>
+                </svg>
+                <span class="slds-assistive-text">Toggle visibility of section</span>
+              </button>
+              {{key}}
+            </div>
           </div>
           <div class="slds-col slds-text-align--right">
-            Best time: {{value.bestTime}}
+            {{value.bestTime}} <svg class="star slds-icon slds-icon--x-small" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="bower_components/salesforce-lightning-design-system/assets/icons/utility-sprite/svg/symbols.svg#favorite"></use></svg>
           </div>
         </div>
-        <div ng-if="expanded === true">
-          <div ng-controller="ByHourGraphCtrl">
-            <canvas
-                    class="chart chart-line"
-                    chart-data="data"
-                    chart-labels="labels">
-            </canvas>
-          </div>
+        <div ng-controller="ByHourGraphCtrl" class="chart-wrapper" ng-if="expanded">
+          <canvas
+                  class="chart chart-line"
+                  chart-colors="colors"
+                  chart-data="[data]"
+                  chart-options="options"
+                  chart-labels="labels">
+          </canvas>
         </div>
       </div>
     </div>

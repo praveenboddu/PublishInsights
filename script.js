@@ -1,12 +1,37 @@
 'use strict';
-
 // Bootstrap the App
-var app = angular.module('app', [
-  'chart.js'
-]);
-
+var app = angular.module('app', ['chart.js', 'ngAnimate']);
+app.config(function(ChartJsProvider) {
+  ChartJsProvider.setOptions('global', {
+    backgroundColor: '#E52542',
+    defaultFontFamily: "'Salesforce Sans'",
+    defaultFontColor: "#54698D",
+    defaultFontSize: 11,
+  });
+  ChartJsProvider.setOptions({
+    chartColors: ['#1A6FDB', '#3892BB', '#49A9A3', '#17C406', '#FFD52F', '#F2842A', '#E52542', '#E34AA4', '#8C4BF5']
+  });
+})
 // By Day Graph Controller
-app.controller('ByDayGraphCtrl', function ($scope, Data) {
+app.controller('ByDayGraphCtrl', function($scope, Data) {
+  $scope.colors = [{
+    backgroundColor: "#1A6FDB",
+    borderWidth: 0
+  }];
+  $scope.options = {
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: "#DADFE7",
+        }
+      }],
+      yAxes: [{
+        gridLines: {
+          color: "#DADFE7",
+        }
+      }]
+    }
+  };
   $scope.labels = [];
   $scope.data = [];
   Object.keys(Data.get()).forEach(function(key) {
@@ -30,29 +55,40 @@ app.controller('ByDayGraphCtrl', function ($scope, Data) {
       case 'saturday':
         day = "Sat";
         break;
-      case  'sunday':
+      case 'sunday':
         day = "Sun";
     }
     $scope.labels.push(day);
     $scope.data.push(Data.get()[key].byDay);
   });
 });
-
 // By Day Hour Controller
-app.controller('ByHourGraphCtrl', function ($scope, Data) {
-  $scope.labels = [];
+app.controller('ByHourGraphCtrl', function($scope, Data) {
+  $scope.labels = ['12a', '', '', '', '4a', '', '', '', '8a', '', '', '', '12p', '', '', '', '4p', '', '', '', '8p', '', '', ''];
   $scope.data = [];
+  $scope.options = {
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: "#DADFE7",
+        },
+      }],
+      yAxes: [{
+        gridLines: {
+          color: "#DADFE7",
+        }
+      }]
+    }
+  };
   Object.keys(Data.get()[$scope.$parent.key].byHour).forEach(function(key) {
-    $scope.labels.push(key);
+    //$scope.labels.push(key);
     $scope.data.push(Data.get()[$scope.$parent.key].byHour[key]);
   });
 });
-
 // Time of Day Card Controller
-app.controller('TimeOfDayCardCtrl', function ($scope, Data) {
+app.controller('TimeOfDayCardCtrl', function($scope, Data) {
   $scope.data = Data.get();
 });
-
 // Data Service
 app.factory('Data', function() {
   var data = {
@@ -77,7 +113,7 @@ app.factory('Data', function() {
         '2p': 51,
         '3p': 46,
         '4p': 46,
-        '5p': 45
+        '5p': 45,
         '6p': 45,
         '7p': 44,
         '8p': 38,
