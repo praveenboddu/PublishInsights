@@ -19,6 +19,11 @@ app.controller('ByDayGraphCtrl', function($scope, Data) {
     borderWidth: 0
   }];
   $scope.options = {
+    layout: {
+      padding: {
+        left: 6
+      }
+    },
     scales: {
       xAxes: [{
         gridLines: {
@@ -26,6 +31,14 @@ app.controller('ByDayGraphCtrl', function($scope, Data) {
         }
       }],
       yAxes: [{
+        ticks: {
+          min: 0,
+          max: 100,
+          stepSize: 20,
+          callback: function(value) {
+            return value + "%"
+          }
+        },
         gridLines: {
           color: "#DADFE7",
         }
@@ -74,6 +87,14 @@ app.controller('ByHourGraphCtrl', function($scope, Data) {
         },
       }],
       yAxes: [{
+        ticks: {
+          min: 0,
+          stepSize: 20,
+          max: 100,
+          callback: function(value) {
+            return value + "%"
+          }
+        },
         gridLines: {
           color: "#DADFE7",
         }
